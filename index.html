@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Administrator Register</title>
+  <meta name="description" content="Administrator Register">
+  <meta name="author" content="SitePoint">
+
+  <!--  JQuery JS -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
+	<!-- JQuery UI CSS/JS -->
+	<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+  <script type="text/javascript" src="adminUtil.js"></script>
+  <script>
+  $(document).ready(function(){
+
+  	$("#loginForm").submit(function(event){
+		event.preventDefault();
+		$("#btnSubmit").prop('disabled', true);
+		var data = $("#loginForm").serialize();
+		var data2 = $('#loginForm').serializeArray();
+
+		// LMOD_Admin.logIn.network.signIn(username,password,successCallback)
+		// response: {signedIn: false, message: "Your sign in information is not valid. Please try again."}
+		// response: {signedIn: true}
+		LMOD_Admin.logIn.network.signIn(data2[0].value,data2[1].value,function(data){
+			console.log(data);
+			if(data.signedIn){
+				console.log("Success");
+			} else {
+				console.log("Fail");
+			}
+
+			$("#btnSubmit").prop('disabled', false);
+		});
+
+	});
+
+	// LMOD_Admin.logIn.util.checkLoginOnInterval(1800600);
+    
+  });
+
+  function getSomeDataNow(){
+
+  	$.get("/kpiTotalPoints.action",function(data){
+  		console.log("TotalProgramPoints: " + data);
+  	});
+
+  	$.get("/kpiMemberCount.action",function(data){
+  		console.log("kMemberCount: " + data);
+  	});
+
+  	$.get("/kpiRegistrationsThisMonth.action",function(data){
+  		console.log("RegistrationsThisMonth: " + data);
+  	});
+
+  }
+</script>
+</head>
+<body>
+
+	<form action="POST" id="loginForm">
+		<label for="userId">Admin User</label>
+		<input name="userId" id="userId" type="text" /><br>
+		<label for="password">Password</label>
+		<input name="password" id="password" type="password"  />
+		<input type="submit" value="submit" id="btnSubmit">
+	</form>
+	<button id="btnGetData" onclick="getSomeDataNow()">Get some data</button>
+</body>
