@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <title>Customer Data</title>
+    <link rel="stylesheet" type="text/css" href="../../page.css">
+    <link href="../../c3/c3.css" rel="stylesheet">
+    <script src="../../c3/d3-5.8.2.min.js" charset="utf-8"></script>  
+    <script src="../../c3/c3.min.js"></script>
+</head>
+<body>
+    <div id="mySidenav" class="sidenav">
+        <br>
+        <a href="customerCount.html">Customer Count</a>
+        <a href="customerLeaderboard.html">Customer Leaderboard</a>
+    </div>
+
+    <div id="main">
+        <ul>
+            <li><a href="../about/about.html">About</a></li>
+            <li><a href="../sales/monthlySales.html">Sales</a></li>
+            <li><a class="active" href="../customerData/customerCount.html">Customer Data</a></li>
+            <li><a href="../customer/customerSearch.html">Customer</a></li>
+            <li><a href="../admin/changePassword.html">Admin</a></li>
+            <li style="float: left;">
+                <input type="checkbox" id="checkbox1" class="checkbox1 visuallyHidden" onclick="openNav()">
+                <label for="checkbox1">
+                    <div class="hamburger hamburger1">
+                        <span class="bar bar1"></span>
+                        <span class="bar bar2"></span>
+                        <span class="bar bar3"></span>
+                        <span class="bar bar4"></span>
+                    </div>
+                </label>
+            </li>
+            <li style="float: left; padding-left: 100px; padding-top: 5px;"><img src="vf3jvxvwl4rvzc0idkq7.png" alt="LoyaltyMatch" height="50" width="200"></li>
+        </ul>
+
+        <div id="page" class="page">
+            <h1>Customer Leaderboard</h1>
+            <hr> 
+        </div>
+    </div>
+
+    <div id="app" class="app">
+        <v-app id="inspire">
+          <v-card>
+            <v-card-title>
+              Nutrition
+              <v-spacer></v-spacer>
+              <v-text-field
+                v-model="search"
+                append-icon="mdi-magnify"
+                label="Search"
+                single-line
+                hide-details
+              ></v-text-field>
+            </v-card-title>
+            <v-data-table
+              :headers="headers"
+              :items="desserts"
+              :search="search"
+            ></v-data-table>
+          </v-card>
+        </v-app>
+      </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="../../main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="table.js"></script>
+</html>
